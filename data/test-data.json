@@ -1,0 +1,7 @@
+{
+  "defaultRegistration": {
+    "firstName": "Test",
+    "lastName": "User",
+    "password": "TestPass123!"
+  }
+}
