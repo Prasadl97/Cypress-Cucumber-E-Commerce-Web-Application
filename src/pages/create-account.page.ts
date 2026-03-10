@@ -9,6 +9,7 @@ export interface RegistrationData {
 }
 
 export class CreateAccountPage extends BasePage {
+  // ─── Locators ───
   get firstnameInput(): Locator {
     return this.page.locator('#firstname');
   }
@@ -33,6 +34,7 @@ export class CreateAccountPage extends BasePage {
     return this.page.getByRole('button', { name: 'Create an Account' });
   }
 
+  // ─── Action methods ───
   async gotoCreateAccount(): Promise<void> {
     await this.goto('/customer/account/create/');
   }

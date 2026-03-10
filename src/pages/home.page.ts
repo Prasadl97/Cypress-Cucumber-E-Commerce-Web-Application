@@ -2,6 +2,7 @@ import { BasePage } from './base.page.js';
 import type { Locator } from 'playwright';
 
 export class HomePage extends BasePage {
+  // ─── Locators ───
   get createAccountLink(): Locator {
     return this.page.getByRole('link', { name: 'Create an Account' });
   }
@@ -10,6 +11,7 @@ export class HomePage extends BasePage {
     return this.page.getByRole('link', { name: 'Sign In' });
   }
 
+  // ─── Action methods ───
   async gotoHome(): Promise<void> {
     await this.goto('/');
   }

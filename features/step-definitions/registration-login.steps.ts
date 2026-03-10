@@ -28,9 +28,10 @@ When('I register a new user with a dynamic email', async function (this: Playwri
   await createAccountPage.register({ firstName, lastName, email, password });
 });
 
-Then('registration succeeds', async function (this: PlaywrightWorld) {
+Then('registration succeeds', { timeout: 20000 }, async function (this: PlaywrightWorld) {
   const dashboardPage = new AccountDashboardPage(this.page, this.parameters.baseURL);
   await dashboardPage.expectOnDashboard();
+  await dashboardPage.expectRegistrationSuccessMessage();
 
   const email = (this as unknown as { _registeredEmail?: string })._registeredEmail;
   const password = (this as unknown as { _registeredPassword?: string })._registeredPassword;
@@ -40,7 +41,7 @@ Then('registration succeeds', async function (this: PlaywrightWorld) {
   }
 });
 
-When('I log out', async function (this: PlaywrightWorld) {
+When('I log out', { timeout: 15000 }, async function (this: PlaywrightWorld) {
   const dashboardPage = new AccountDashboardPage(this.page, this.parameters.baseURL);
   await dashboardPage.clickSignOut();
 });

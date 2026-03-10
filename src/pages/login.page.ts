@@ -2,18 +2,20 @@ import { BasePage } from './base.page.js';
 import type { Locator } from 'playwright';
 
 export class LoginPage extends BasePage {
+  // ─── Locators ───
   get emailInput(): Locator {
-    return this.page.locator('#email_address');
+    return this.page.locator('#email');
   }
 
   get passwordInput(): Locator {
-    return this.page.locator('#password');
+    return this.page.locator('input[name="login[password]"]');
   }
 
   get signInButton(): Locator {
-    return this.page.getByRole('button', { name: 'Sign In' });
+    return this.page.locator('span', { hasText: 'Sign In' });
   }
 
+  // ─── Action methods ───
   async gotoLogin(): Promise<void> {
     await this.goto('/customer/account/login/');
   }
