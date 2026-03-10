@@ -1,1 +1,0 @@
-[     657ms] [ERROR] The Content-Security-Policy directive 'frame-ancestors' does not support the source expression ''unsafe-inline'' @ https://magento2-demo.magebit.com/:0
