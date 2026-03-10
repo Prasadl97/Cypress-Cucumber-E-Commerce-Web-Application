@@ -1,5 +1,5 @@
 import { Before, After } from '@cucumber/cucumber';
-import { PlaywrightWorld } from './world.js';
+import { PlaywrightWorld } from '../support/world.js';
 
 Before(async function (this: PlaywrightWorld) {
   await this.init();

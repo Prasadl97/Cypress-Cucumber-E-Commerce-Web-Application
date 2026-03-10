@@ -6,13 +6,20 @@
   "scripts": {
     "test": "node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js",
     "test:headed": "node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js --profile headed",
-    "test:ui": "node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js --profile ui"
+    "test:ui": "node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js --profile ui",
+    "test:firefox": "cross-env BROWSER=firefox node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js",
+    "test:firefox:headed": "cross-env BROWSER=firefox node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js --profile headed",
+    "test:webkit": "cross-env BROWSER=webkit node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js",
+    "test:webkit:headed": "cross-env BROWSER=webkit node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js --profile headed",
+    "test:all-browsers": "npm test && npm run test:firefox && npm run test:webkit",
+    "test:all": "node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js --profile headed src/features/"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^11.0.0",
     "@cucumber/pretty-formatter": "^1.0.0",
     "@playwright/test": "^1.49.0",
     "@types/node": "^22.0.0",
+    "cross-env": "^7.0.3",
     "playwright": "^1.49.0",
     "tsx": "^4.19.0",
     "typescript": "^5.6.0"

@@ -4,3 +4,4 @@ dist/
 .env.*
 data/entities/registered-user.json
 .playwright-mcp/
+reports/

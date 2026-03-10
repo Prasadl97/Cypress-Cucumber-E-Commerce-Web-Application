@@ -1,4 +1,4 @@
-import { BasePage } from './base.page.js';
+import { BasePage } from './BasePage.js';
 import type { Locator } from 'playwright';
 
 export class LoginPage extends BasePage {

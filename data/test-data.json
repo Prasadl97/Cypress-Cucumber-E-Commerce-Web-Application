@@ -3,5 +3,19 @@
     "firstName": "Test",
     "lastName": "User",
     "password": "TestPass123!"
+  },
+  "shopCart": {
+    "searchQuery": "Radiant Tee",
+    "productName": "Radiant Tee",
+    "size": "S",
+    "color": "Blue",
+    "quantityToUpdate": 2,
+    "successMessage": "You added Radiant Tee to your shopping cart."
+  },
+  "admin": {
+    "basePath": "/admin",
+    "username": "magebit",
+    "password": "Demo123"
   }
 }
+

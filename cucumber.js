@@ -43,4 +43,5 @@ const ui = {
   worldParameters: { baseURL, adminBaseURL, browserName, headed: true, slowMo: 500, entityFilePath },
 };
 
-export { headless as default, headed, ui };
+export default headless;
+export { headed, ui };

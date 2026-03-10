@@ -1,16 +1,11 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { PlaywrightWorld } from '../support/world.js';
-import { generateUniqueEmail } from '../../src/utils/id-utils.js';
-import { saveRegisteredUser, loadRegisteredUser } from '../../src/utils/entity-store.js';
-import { loadTestData } from '../../src/config/test-data.js';
-import { HomePage } from '../../src/pages/home.page.js';
-import { CreateAccountPage } from '../../src/pages/create-account.page.js';
-import { LoginPage } from '../../src/pages/login.page.js';
-import { AccountDashboardPage } from '../../src/pages/account-dashboard.page.js';
+import { generateUniqueEmail } from '../utils/id-utils.js';
+import { saveRegisteredUser, loadRegisteredUser } from '../utils/entity-store.js';
+import { loadTestData } from '../../configs/testData';
 
 Given('I am on the home page', async function (this: PlaywrightWorld) {
-  const homePage = new HomePage(this.page, this.parameters.baseURL);
-  await homePage.gotoHome();
+  await this.homePage.gotoHome();
 });
 
 When('I register a new user with a dynamic email', async function (this: PlaywrightWorld) {
@@ -20,18 +15,15 @@ When('I register a new user with a dynamic email', async function (this: Playwri
   (this as unknown as { _registeredEmail?: string })._registeredEmail = email;
   (this as unknown as { _registeredPassword?: string })._registeredPassword = password;
 
-  const homePage = new HomePage(this.page, this.parameters.baseURL);
-  await homePage.gotoHome();
-  await homePage.clickCreateAccount();
+  await this.homePage.gotoHome();
+  await this.homePage.clickCreateAccount();
 
-  const createAccountPage = new CreateAccountPage(this.page, this.parameters.baseURL);
-  await createAccountPage.register({ firstName, lastName, email, password });
+  await this.createAccountPage.register({ firstName, lastName, email, password });
 });
 
 Then('registration succeeds', { timeout: 20000 }, async function (this: PlaywrightWorld) {
-  const dashboardPage = new AccountDashboardPage(this.page, this.parameters.baseURL);
-  await dashboardPage.expectOnDashboard();
-  await dashboardPage.expectRegistrationSuccessMessage();
+  await this.accountDashboardPage.expectOnDashboard();
+  await this.accountDashboardPage.expectRegistrationSuccessMessage();
 
   const email = (this as unknown as { _registeredEmail?: string })._registeredEmail;
   const password = (this as unknown as { _registeredPassword?: string })._registeredPassword;
@@ -42,8 +34,7 @@ Then('registration succeeds', { timeout: 20000 }, async function (this: Playwrig
 });
 
 When('I log out', { timeout: 15000 }, async function (this: PlaywrightWorld) {
-  const dashboardPage = new AccountDashboardPage(this.page, this.parameters.baseURL);
-  await dashboardPage.clickSignOut();
+  await this.accountDashboardPage.clickSignOut();
 });
 
 When('I log in with the saved credentials', async function (this: PlaywrightWorld) {
@@ -51,12 +42,10 @@ When('I log in with the saved credentials', async function (this: PlaywrightWorl
   const { email, password } = await loadRegisteredUser(entityPath);
   if (!password) throw new Error('Saved user has no password; cannot login.');
 
-  const loginPage = new LoginPage(this.page, this.parameters.baseURL);
-  await loginPage.gotoLogin();
-  await loginPage.login(email, password);
+  await this.loginPage.gotoLogin();
+  await this.loginPage.login(email, password);
 });
 
 Then('I see my account dashboard', async function (this: PlaywrightWorld) {
-  const dashboardPage = new AccountDashboardPage(this.page, this.parameters.baseURL);
-  await dashboardPage.expectOnDashboard();
+  await this.accountDashboardPage.expectOnDashboard();
 });
