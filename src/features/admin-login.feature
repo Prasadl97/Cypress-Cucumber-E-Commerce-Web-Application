@@ -1,5 +1,6 @@
 Feature: Admin Login
 
+  @admin @smoke
   Scenario: Login to admin, navigate to Orders, and validate orders grid
     Given I am on the admin login page
     When I log in to the admin with username "magebit" and password "Demo123"

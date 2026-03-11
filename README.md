@@ -24,6 +24,16 @@ npm run test:headed
 # With browser visible and slowed down (e.g. 500ms per action)
 npm run test:ui
 
+# Run by tags
+npm run test:smoke    # @smoke
+npm run test:admin   # @admin
+npm run test:cart    # @cart
+
+# Or pass tags directly
+npx cucumber-js --tags "@smoke"
+npx cucumber-js --tags "@admin and @smoke"
+npx cucumber-js --tags "not @registration"
+
 # Cross-browser: run on Firefox or WebKit
 BROWSER=firefox npm test
 BROWSER=webkit npm test

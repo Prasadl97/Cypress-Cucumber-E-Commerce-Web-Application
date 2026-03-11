@@ -12,7 +12,10 @@
     "test:webkit": "cross-env BROWSER=webkit node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js",
     "test:webkit:headed": "cross-env BROWSER=webkit node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js --profile headed",
     "test:all-browsers": "npm test && npm run test:firefox && npm run test:webkit",
-    "test:all": "node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js --profile headed src/features/"
+    "test:all": "node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js --profile headed src/features/",
+    "test:smoke": "node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js --tags \"@smoke\"",
+    "test:admin": "node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js --tags \"@admin\"",
+    "test:cart": "node --import tsx node_modules/@cucumber/cucumber/bin/cucumber-js --tags \"@cart\""
   },
   "devDependencies": {
     "@cucumber/cucumber": "^11.0.0",

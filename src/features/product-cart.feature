@@ -1,5 +1,6 @@
 Feature: Product & Cart
 
+  @cart @smoke
   Scenario: Search, add to cart, update quantity, remove item
     Given I am on the home page
     When I search for "Radiant Tee"
