@@ -9,9 +9,10 @@ Given('I am on the admin login page', function () {
   adminLoginPage.gotoAdminLogin();
 });
 
-When('I log in to the admin with username {string} and password {string}', function (username: string, password: string) {
+When('I log in to the admin', function () {
+  const { username, password } = TestDataLoader.load().admin;
   adminLoginPage.login(username, password);
-});
+});;
 
 Then('I am on the admin dashboard', function () {
   cy.then(async () => {
